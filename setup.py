@@ -13,7 +13,7 @@ DESCRIPTION = open(
 
 classifiers = [
     "Development Status :: 4 - Beta",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python",
     "Topic :: Utilities",
 ]
