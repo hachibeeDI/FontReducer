@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import (print_function, division, absolute_import, unicode_literals, )
+
+'''
+$ echo 'words_to_reduce' | fontreducer PATH_TO_FILE PATH_TO_OUTPUT
+'''
+
+
+if __name__ == "__main__":
+    import sys
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+    from sys import stdin, argv
+    chars = unicode(stdin.read(), 'utf8')
+    code_pointes = list({ord(char) for char in chars})
+    filepath = argv[1]
+    from fontreducer import generate_subset
+    font = generate_subset(code_pointes, filepath)
+    font.generate(argv[2])
