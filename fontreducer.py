@@ -24,6 +24,10 @@ def _get_fontname(font):
         return path.splitext(font.default_base_filename)[0]
 
 
+def chars_to_codepoints(chars):
+    return list({ord(char) for char in chars})
+
+
 def generate_subset(chars, fontpath):
     '''
     >>> font = generate_subset('abc', 'Love Letter Typewriter.ttf')

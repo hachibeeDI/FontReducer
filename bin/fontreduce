@@ -11,10 +11,11 @@ if __name__ == "__main__":
     import sys
     reload(sys)
     sys.setdefaultencoding('utf-8')
+
     from sys import stdin, argv
-    chars = unicode(stdin.read(), 'utf8')
-    code_pointes = list({ord(char) for char in chars})
+    chars = unicode(stdin.read(), 'utf-8')
+    from fontreducer import chars_to_codepoints, generate_subset
+    code_pointes = chars_to_codepoints(chars)
     filepath = argv[1]
-    from fontreducer import generate_subset
     font = generate_subset(code_pointes, filepath)
     font.generate(argv[2])
