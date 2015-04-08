@@ -26,7 +26,6 @@ def _get_fontname(font):
 
 def generate_subset(chars, fontpath):
     '''
-    via: http://3846masa.hatenablog.jp/entry/2015/04/08/163149
     >>> font = generate_subset('abc', 'Love Letter Typewriter.ttf')
     >>> font.generate('./hogehoge.ttf')
     '''
