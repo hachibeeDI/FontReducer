@@ -35,22 +35,24 @@ def generate_subset(chars, fontpath):
     fontname = _get_fontname(font)
     _logger.info('reducing font name is ' + fontname)
 
+    chars_append = chars.append
     for i in range(0, len(chars)):
-        char = chars[i]
+        sample_char = chars[i]
         try:
-            uni = font[char].unicode
+            char_in_fontfile = font[sample_char]
         except TypeError:
-            _logger.info(unichr(char) + ' is missing font code')
-            pass
+            _logger.info(unichr(sample_char) + ' is missing font code')
+            continue
         else:
-            if uni != char:
-                chars.append(uni)
-            alts = font[char].altuni
+            uni = char_in_fontfile.unicode
+            if uni != sample_char:
+                chars_append(uni)
+            alts = char_in_fontfile.altuni
             if alts is None:
                 continue
             for alt in alts:
-                if alt[0] != char:
-                    chars.append(alt[0])
+                if alt[0] != sample_char:
+                    chars_append(alt[0])
     for c in chars:
         font.selection.select((b"more", None), c)
     font.selection.invert()
