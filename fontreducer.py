@@ -31,7 +31,10 @@ def generate_subset(chars, fontpath):
     >>> font.generate('./hogehoge.ttf')
     '''
     import fontforge
+    _logger.info('========================')
+    _logger.info('load font file')
     font = fontforge.open(fontpath)
+    _logger.info('========================')
     fontname = _get_fontname(font)
     _logger.info('reducing font name is ' + fontname)
 
