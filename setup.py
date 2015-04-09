@@ -26,10 +26,10 @@ setup(
     author_email='8hachibee125@gmail.com',
     url='https://github.com/hachibeeDI/FontReducer',
     py_modules=['fontreducer', ],
-    scripts=["bin/fontreduce", ],
+    scripts=['bin/fontreduce', ],
     keywords=['fontforge', ],
     classifiers=classifiers,
-    install_requires=['', ],
+    install_requires=['click', ],
     license=LICENSE,
     long_description=DESCRIPTION,
     test_suite='')
