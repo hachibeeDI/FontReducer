@@ -14,7 +14,8 @@ _logger.addHandler(_handler)
 # ==== scripts ====
 
 
-def _get_fontname(font):
+def get_fontname(font):
+    ''' extract font name by FontForge object '''
     if font.cidfamilyname is not None:
         return font.cidfamilyname
     elif font.familyname is not None:
@@ -22,6 +23,14 @@ def _get_fontname(font):
     else:
         from os import path
         return path.splitext(font.default_base_filename)[0]
+
+
+def format_codepoint_texts(text):
+    '''
+    >>> format_codepoint_texts('f078 f079')
+    [61560, 61561]
+    '''
+    return list({int(point, 16) for point in text.split(' ')})
 
 
 def chars_to_codepoints(chars):
@@ -38,7 +47,7 @@ def generate_subset(chars, fontpath):
     _logger.info('load font file')
     font = fontforge.open(fontpath)
     _logger.info('========================')
-    fontname = _get_fontname(font)
+    fontname = get_fontname(font)
     _logger.info('reducing font name is ' + fontname)
 
     chars_append = chars.append

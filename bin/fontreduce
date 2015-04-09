@@ -9,8 +9,8 @@ import click
 @click.command()
 @click.argument('font_path')
 @click.option('-o', '--output', default='', help='output file path')
-@click.option('--codepoint', type=click.BOOL, help='pass the value as code points')
-def fontreducer(font_path, output, codepoint):
+@click.option('--is-codepoint', default=False, type=click.BOOL, help='pass the value as code points')
+def fontreducer(font_path, output, is_codepoint):
     '''
     Example:
 
@@ -18,8 +18,12 @@ def fontreducer(font_path, output, codepoint):
     '''
     from sys import stdin
     chars = unicode(stdin.read(), 'utf-8')
-    from fontreducer import chars_to_codepoints, generate_subset
-    code_pointes = chars_to_codepoints(chars)
+    from fontreducer import format_codepoint_texts, chars_to_codepoints, generate_subset
+    if is_codepoint:
+        code_pointes = format_codepoint_texts(chars)
+    else:
+        code_pointes = chars_to_codepoints(chars)
+
     font = generate_subset(code_pointes, font_path)
     if output:
         font.save(output)
